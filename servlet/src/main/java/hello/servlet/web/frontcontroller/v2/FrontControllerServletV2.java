@@ -24,7 +24,7 @@ public class FrontControllerServletV2 extends HttpServlet {
     private Map<String, ControllerV2> controllerMap = new HashMap<>();
 
     public FrontControllerServletV2() {
-        controllerMap.put("/front-controller/v2/members/new-form", new MemberFormControllerV2());
+        controllerMap.put("/front-controller/v2/members/v1-form", new MemberFormControllerV2());
         controllerMap.put("/front-controller/v2/members/save", new MemberSaveControllerV2());
         controllerMap.put("/front-controller/v2/members", new MemberListControllerV2());
     }

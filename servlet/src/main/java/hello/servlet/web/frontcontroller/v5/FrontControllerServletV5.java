@@ -1,6 +1,6 @@
 package hello.servlet.web.frontcontroller.v5;
 
-import hello.servlet.web.frontcontroller.ModelView;
+import hello.servlet.web.frontcontroller.ModelAndView;
 import hello.servlet.web.frontcontroller.MyView;
 import hello.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
 import hello.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
@@ -22,7 +22,7 @@ import java.util.*;
 @WebServlet(name = "frontControllerServletV5", urlPatterns = "/front-controller/v5/*")
 public class FrontControllerServletV5 extends HttpServlet {
 
-    // private Map<String, ControllerV3> controllerMap = new HashMap<>();
+    // private Map<String, ControllerV3> controllerMap = v1 HashMap<>();
     private final Map<String, Object> handlerMappingMap = new HashMap<>();
     private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
 
@@ -35,11 +35,11 @@ public class FrontControllerServletV5 extends HttpServlet {
     }
 
     private void initHandlerMappingMap() {
-        handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
+        handlerMappingMap.put("/front-controller/v5/v3/members/v1-form", new MemberFormControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
 
-        handlerMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
+        handlerMappingMap.put("/front-controller/v5/v4/members/v1-form", new MemberFormControllerV4());
         handlerMappingMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
         handlerMappingMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
     }
@@ -60,7 +60,7 @@ public class FrontControllerServletV5 extends HttpServlet {
 
         MyHandlerAdapter handlerAdapter = getHandlerAdapter(handler);
 
-        ModelView mv = handlerAdapter.handle(request, response, handler);
+        ModelAndView mv = handlerAdapter.handle(request, response, handler);
 
         String viewName = mv.getViewName();
         MyView myView = viewResolver(viewName);
