@@ -1,11 +1,9 @@
 package hello.springmvc.basic.request;
 
+import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +58,7 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-default")
     public String requestParamDefault(@RequestParam(required = true, defaultValue = "guest") String username,
-                                       @RequestParam(required = false, defaultValue = "-1") int age) {
+                                      @RequestParam(required = false, defaultValue = "-1") int age) {
         log.info("Required default = {}, {}", username, age);
         return "required default ok";
     }
@@ -71,8 +69,22 @@ public class RequestParamController {
         log.info("paramMap username={}, age={}", map.get("username"), map.get("age"));
 
         System.out.println("map.get(\"username\") = " + map.get("username").getClass());
-        
+
+
         return "required map ok";
     }
 
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("{} {}", helloData.getUsername(), helloData.getAge());
+
+        return "ok model";
+    }
+
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData helloData) {
+        log.info("{} {}", helloData.getUsername(), helloData.getAge());
+
+        return "ok model";
+    }
 }
