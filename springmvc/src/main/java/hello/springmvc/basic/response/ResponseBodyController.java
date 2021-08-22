@@ -7,10 +7,7 @@ import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,7 +27,7 @@ public class ResponseBodyController {
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @GetMapping("response-body-string-v3")
     public String responseBodyV3() {
         return "ok";
@@ -43,7 +40,7 @@ public class ResponseBodyController {
         return new ResponseEntity<>(helloData, HttpStatus.OK);
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/response-body-json-v2")
     public HelloData responseBodyJsonV2() {
@@ -52,4 +49,8 @@ public class ResponseBodyController {
         return helloData;
     }
 
+    @GetMapping("test-fail")
+    public  HelloData converterFailCase(@RequestBody HelloData data) {
+        return data;
+    }
 }
