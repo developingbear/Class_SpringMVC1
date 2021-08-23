@@ -1,4 +1,4 @@
-package hello.domain.item;
+package hello.itemservice.domain.item;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +12,9 @@ public class ItemRepository {
     private static final ConcurrentHashMap<Long, Item> store = new ConcurrentHashMap<>();
     //private static AtomicLong sequence = ;
     private static long sequence = 0L;
+
+    public ItemRepository() {
+    }
 
     public Item save(Item item) {
         item.setId(++sequence);
